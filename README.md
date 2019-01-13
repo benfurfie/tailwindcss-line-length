@@ -1,5 +1,9 @@
 # Line Length Utility Plugin for Tailwind CSS
 
+This plugin allows you to constrain the maximum length of a line of text to aid with readability. This fits in the idea that there is a maximum length a line of text can be before it becomes difficult to read. With text that is 1rem/16px in size, that is typically somewhere around 80 characters.
+
+This plugin uses EM units to scale the max-width of the element it is applied to. This means you can be sure that the length of a line of text will never be too long to read easily. Because it uses EM units, as your text becomes larger, the max-width becomes wider.
+
 ## Installation
 
 Add this plugin to your project
@@ -14,36 +18,41 @@ yarn add tailwindcss-line-length -D
 
 ## Usage
 
-This plugin allows you to constrain the maximum length of a line of text to aid with readability. This fits in the idea that there is a maximum length a line of text can be before it becomes difficult to read. With text that is 1rem/16px in size, that is typically somewhere around 80 characters.
-
-This plugin uses EM units to scale the max-width of the element it is applied to. This means you can be sure that the length of a line of text will never be too long to read easily. Because it uses EM units, as your text becomes larger, the max-width becomes wider.
-
-### Container vs Line Length
-
-As both the container and line length both make use of the max-width prop, I strongly advise you only add this class to an element nested within a container – never at the same level.
-
-```html
-<div class="container mx-auto">
-  <div class="line-length-md">
-    <p>Your content goes here</p>
-  </div>
-</div>
-```
-
-### Recommended Settings
-
-Text goes here
+Here is an example configuration for you to add to your plugins array.
 
 ```javascript
-require('./src/plugins/reading')({
+require('.tailwindcss-line-length')({
   widths: {
     'xs': '18em', // 300px at 1rem
     'sm': '30em',
-    'md': '35em',
+    'md': '35em', // 560px at 1rem
     'lg': '40em',
     'xl': '50em', // 800px at 1rem
   }
 })
+```
+
+So it will look like this in your tailwind.js file.
+
+```js
+plugins: [
+  require('tailwindcss/plugins/container')({
+    // center: true,
+    // padding: '1rem',
+  }),
+  ...
+  require('tailwindcss-line-length')({
+    widths: {
+      'xs': '18em', // 300px at 1rem
+      'sm': '30em',
+      'md': '35em',
+      'lg': '40em',
+      'xl': '50em', // 800px at 1rem
+    },
+    variants: ['responsive'],
+  }),
+  ...
+],
 ```
 
 This configuration would create the following classes:
@@ -87,4 +96,16 @@ require('./src/plugins/reading')({
   },
   variants: ['responsive'],
 })
+```
+
+### Container vs Line Length
+
+As both the container and line length both make use of the max-width prop, I strongly advise you only add this class to an element nested within a container – never at the same level.
+
+```html
+<div class="container mx-auto">
+  <div class="line-length-md">
+    <p>Your content goes here</p>
+  </div>
+</div>
 ```

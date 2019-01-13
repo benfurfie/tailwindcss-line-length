@@ -1,0 +1,10 @@
+{
+  "name": "tailwindcss-line-length",
+  "version": "1.0.0",
+  "description": "A utility plugin for the Tailwind CSS framework that allows you to set maximum line lengths",
+  "main": "index.js",
+  "repository": "https://github.com/benfurfie/tailwindcss-line-length",
+  "author": "Ben Furfie <hello@benfurfie.co.uk>",
+  "license": "MIT",
+  "private": false
+}
